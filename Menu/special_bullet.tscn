@@ -1,0 +1,58 @@
+[gd_scene load_steps=6 format=3 uid="uid://coc72iyex0k0l"]
+
+[ext_resource type="PackedScene" uid="uid://lm7uuqkgrq7q" path="res://Menu/bulet.tscn" id="1_07rax"]
+[ext_resource type="Script" path="res://Menu/SpecialBullet.gd" id="2_vocjj"]
+
+[sub_resource type="Animation" id="Animation_8kpuy"]
+resource_name = "Default"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [16, 29]
+}
+
+[sub_resource type="Animation" id="Animation_0ss3s"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [16]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qghrt"]
+_data = {
+"Default": SubResource("Animation_8kpuy"),
+"RESET": SubResource("Animation_0ss3s")
+}
+
+[node name="SpecialBullet" instance=ExtResource("1_07rax")]
+script = ExtResource("2_vocjj")
+
+[node name="Sprite2D" parent="." index="0"]
+scale = Vector2(8, 8)
+frame = 16
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite2D" index="0"]
+libraries = {
+"": SubResource("AnimationLibrary_qghrt")
+}
+autoplay = "Default"
+
+[node name="CollisionShape2D" parent="." index="1"]
+scale = Vector2(3, 3)

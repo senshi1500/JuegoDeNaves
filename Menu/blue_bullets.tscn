@@ -1,0 +1,145 @@
+[gd_scene load_steps=7 format=3 uid="uid://cssq6lhn2oxqc"]
+
+[ext_resource type="Script" path="res://Menu/BlueBullets.gd" id="1_66lca"]
+[ext_resource type="Texture2D" uid="uid://n6i1fkulegho" path="res://Sprites/SpriteSheetAllV1.png" id="2_s65eg"]
+
+[sub_resource type="Animation" id="Animation_3hcm8"]
+resource_name = "Default"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [42, 4]
+}
+
+[sub_resource type="Animation" id="Animation_21npo"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [42]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_vulnb"]
+_data = {
+"Default": SubResource("Animation_3hcm8"),
+"RESET": SubResource("Animation_21npo")
+}
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_dnxly"]
+
+[node name="BlueBullets" type="Node2D"]
+visible = false
+script = ExtResource("1_66lca")
+
+[node name="Bullet1" type="Area2D" parent="."]
+position = Vector2(50, 50)
+collision_layer = 4
+collision_mask = 4
+
+[node name="Sprite2D" type="Sprite2D" parent="Bullet1"]
+texture_filter = 1
+position = Vector2(2, 3)
+scale = Vector2(3, 3)
+texture = ExtResource("2_s65eg")
+hframes = 13
+vframes = 4
+frame = 42
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Bullet1/Sprite2D"]
+libraries = {
+"": SubResource("AnimationLibrary_vulnb")
+}
+autoplay = "Default"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bullet1"]
+shape = SubResource("CircleShape2D_dnxly")
+
+[node name="Bullet2" type="Area2D" parent="."]
+position = Vector2(-50, 50)
+collision_layer = 4
+collision_mask = 4
+
+[node name="Sprite2D" type="Sprite2D" parent="Bullet2"]
+texture_filter = 1
+position = Vector2(2, 3)
+scale = Vector2(3, 3)
+texture = ExtResource("2_s65eg")
+hframes = 13
+vframes = 4
+frame = 42
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Bullet2/Sprite2D"]
+libraries = {
+"": SubResource("AnimationLibrary_vulnb")
+}
+autoplay = "Default"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bullet2"]
+shape = SubResource("CircleShape2D_dnxly")
+
+[node name="Bullet3" type="Area2D" parent="."]
+position = Vector2(50, -50)
+collision_layer = 4
+collision_mask = 4
+
+[node name="Sprite2D" type="Sprite2D" parent="Bullet3"]
+texture_filter = 1
+position = Vector2(2, 3)
+scale = Vector2(3, 3)
+texture = ExtResource("2_s65eg")
+hframes = 13
+vframes = 4
+frame = 42
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Bullet3/Sprite2D"]
+libraries = {
+"": SubResource("AnimationLibrary_vulnb")
+}
+autoplay = "Default"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bullet3"]
+shape = SubResource("CircleShape2D_dnxly")
+
+[node name="Bullet4" type="Area2D" parent="."]
+position = Vector2(-50, -50)
+collision_layer = 4
+collision_mask = 4
+
+[node name="Sprite2D" type="Sprite2D" parent="Bullet4"]
+texture_filter = 1
+position = Vector2(2, 3)
+scale = Vector2(3, 3)
+texture = ExtResource("2_s65eg")
+hframes = 13
+vframes = 4
+frame = 42
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Bullet4/Sprite2D"]
+libraries = {
+"": SubResource("AnimationLibrary_vulnb")
+}
+autoplay = "Default"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bullet4"]
+shape = SubResource("CircleShape2D_dnxly")
+
+[connection signal="body_entered" from="Bullet1" to="." method="_on_bullet_1_body_entered"]
+[connection signal="body_entered" from="Bullet2" to="." method="_on_bullet_2_body_entered"]
+[connection signal="body_entered" from="Bullet3" to="." method="_on_bullet_3_body_entered"]
+[connection signal="body_entered" from="Bullet4" to="." method="_on_bullet_4_body_entered"]

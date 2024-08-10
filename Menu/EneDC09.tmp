@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3 uid="uid://dq7ev6kyv1xms"]
+
+[ext_resource type="Script" path="res://Menu/Enemy.gd" id="1_bq0w5"]
+[ext_resource type="Texture2D" uid="uid://n6i1fkulegho" path="res://Sprites/SpriteSheetAllV1.png" id="2_v7otu"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_iwos1"]
+size = Vector2(8.66667, 14)
+
+[node name="NaveEnemy" type="CharacterBody2D" groups=["enemys"]]
+scale = Vector2(3, 3)
+collision_layer = 13
+collision_mask = 13
+script = ExtResource("1_bq0w5")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("2_v7otu")
+hframes = 13
+vframes = 4
+frame = 5
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_iwos1")
+
+[node name="Marker2D" type="Marker2D" parent="."]

@@ -1,0 +1,66 @@
+[gd_scene load_steps=7 format=3 uid="uid://c5ebu67utpfux"]
+
+[ext_resource type="PackedScene" uid="uid://duwj8r0gfvnc7" path="res://Menu/gui_player.tscn" id="1_eg0rf"]
+[ext_resource type="Script" path="res://Menu/space.gd" id="1_s2qxv"]
+[ext_resource type="PackedScene" uid="uid://cyrb4s2ry2hnk" path="res://Menu/nave.tscn" id="2_ynhn2"]
+[ext_resource type="Texture2D" uid="uid://ca7dif0cbq8j6" path="res://Sprites/BackgroundV1.png" id="4_m7omp"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_trjrj"]
+size = Vector2(20, 730)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2i162"]
+size = Vector2(499, 20)
+
+[node name="Space" type="Node2D"]
+script = ExtResource("1_s2qxv")
+
+[node name="GUIPlayer" parent="." node_paths=PackedStringArray("player") instance=ExtResource("1_eg0rf")]
+custom_minimum_size = Vector2(480, 720)
+anchors_preset = 9
+anchor_right = 0.0
+offset_top = 0.0
+offset_right = 480.0
+offset_bottom = 720.0
+grow_horizontal = 1
+player = NodePath("../Nave")
+
+[node name="Nave" parent="." instance=ExtResource("2_ynhn2")]
+position = Vector2(240, 424)
+
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(250, -300)
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
+texture_filter = 1
+scale = Vector2(5, 5.625)
+texture = ExtResource("4_m7omp")
+centered = false
+hframes = 4
+
+[node name="Area2DVertical" type="StaticBody2D" parent="."]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape2DVertical" type="CollisionShape2D" parent="Area2DVertical"]
+position = Vector2(0, 355)
+shape = SubResource("RectangleShape2D_trjrj")
+
+[node name="CollisionShape2DVertical2" type="CollisionShape2D" parent="Area2DVertical"]
+position = Vector2(480, 355)
+shape = SubResource("RectangleShape2D_trjrj")
+
+[node name="Area2DHorizontal" type="StaticBody2D" parent="."]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2DHorizontal" type="CollisionShape2D" parent="Area2DHorizontal"]
+position = Vector2(239.5, 0)
+shape = SubResource("RectangleShape2D_2i162")
+
+[node name="CollisionShape2DHorizontal2" type="CollisionShape2D" parent="Area2DHorizontal"]
+position = Vector2(239.5, 720)
+shape = SubResource("RectangleShape2D_2i162")

@@ -1,0 +1,52 @@
+[gd_scene load_steps=4 format=3 uid="uid://cyrb4s2ry2hnk"]
+
+[ext_resource type="Script" path="res://Menu/nave.gd" id="1_vtsji"]
+[ext_resource type="Texture2D" uid="uid://n6i1fkulegho" path="res://Sprites/SpriteSheetAllV1.png" id="2_b48wp"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_jpjdn"]
+
+[node name="Nave" type="CharacterBody2D" groups=["Player"]]
+collision_layer = 23
+collision_mask = 23
+script = ExtResource("1_vtsji")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(5, 5)
+texture = ExtResource("2_b48wp")
+hframes = 13
+vframes = 4
+frame = 13
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-3, 0)
+scale = Vector2(2, 2)
+shape = SubResource("CircleShape2D_jpjdn")
+
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(-3, -35)
+
+[node name="TimerIFrames" type="Timer" parent="."]
+wait_time = 0.7
+
+[node name="Flash" type="Sprite2D" parent="."]
+visible = false
+texture_filter = 1
+position = Vector2(1, 1)
+scale = Vector2(6, 6)
+texture = ExtResource("2_b48wp")
+hframes = 13
+vframes = 4
+frame = 1
+
+[node name="Shild" type="Sprite2D" parent="."]
+visible = false
+texture_filter = 1
+position = Vector2(-3, 5)
+scale = Vector2(7, 7)
+texture = ExtResource("2_b48wp")
+hframes = 13
+vframes = 4
+frame = 17
+
+[connection signal="timeout" from="TimerIFrames" to="." method="_on_timer_i_frames_timeout"]

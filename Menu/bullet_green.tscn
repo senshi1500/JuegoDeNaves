@@ -1,0 +1,37 @@
+[gd_scene load_steps=5 format=3 uid="uid://cjr4p88n4f77g"]
+
+[ext_resource type="PackedScene" uid="uid://lm7uuqkgrq7q" path="res://Menu/bulet.tscn" id="1_4fnju"]
+[ext_resource type="Script" path="res://Menu/bullet_green.gd" id="2_vr3bj"]
+
+[sub_resource type="Animation" id="Animation_1i20k"]
+resource_name = "Default"
+length = 0.3
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [15, 28]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_7m8go"]
+_data = {
+"Default": SubResource("Animation_1i20k")
+}
+
+[node name="Bullet_green" instance=ExtResource("1_4fnju")]
+script = ExtResource("2_vr3bj")
+
+[node name="Sprite2D" parent="." index="0"]
+frame = 15
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite2D" index="0"]
+libraries = {
+"": SubResource("AnimationLibrary_7m8go")
+}
