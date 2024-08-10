@@ -30,3 +30,7 @@ func get_damage(damage:int=0, Type:int=0):
 func _on_area_2d_body_entered(body):
 	if body.is_in_group("Player"):
 		body.get_damage(10)
+
+
+func _on_tree_exited():
+	queue_free()

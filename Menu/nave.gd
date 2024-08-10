@@ -1,6 +1,8 @@
 extends CharacterBody2D
 
 #region variables
+var scene_game_over = load("res://Menu/game_over_screen.tscn")
+
 const BULLET = preload("res://Menu/bulet.tscn")
 const BULLET_ORANGE = preload("res://Menu/bullet_orange.tscn")
 const BULLET_RED = preload("res://Menu/bullet_red.tscn")
@@ -142,7 +144,9 @@ func get_damage(d=0) -> void:
 		print("daño al jugador", d)
 		life-=d
 		if life<=0:
-			queue_free()
+			get_tree().change_scene_to_packed(scene_game_over)
 		I_frames()
+
+
 
 #endregion

@@ -32,4 +32,5 @@ shape = SubResource("RectangleShape2D_iwos1")
 
 [node name="Marker2D" type="Marker2D" parent="."]
 
+[connection signal="tree_exited" from="." to="." method="_on_tree_exited"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
